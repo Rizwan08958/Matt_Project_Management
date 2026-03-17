@@ -24,8 +24,10 @@ export function LoginForm() {
         setError(result.error);
         return;
       }
-      router.push("/dashboard");
+      // Small delay to ensure session cookie is set before redirecting
+      await new Promise(resolve => setTimeout(resolve, 500));
       router.refresh();
+      router.push("/dashboard");
     });
   }
 
